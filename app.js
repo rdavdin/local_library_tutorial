@@ -10,7 +10,8 @@ const users_router = require('./routes/users');
 const catalog_router = require('./routes/catalog');
 
 const app = express();
-const mongoDB = 'mongodb+srv://minigame:1234@cluster0.nglxfof.mongodb.net/?retryWrites=true&w=majority';
+const dev_db_url = 'mongodb+srv://minigame:1234@cluster0.nglxfof.mongodb.net/?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error'));
